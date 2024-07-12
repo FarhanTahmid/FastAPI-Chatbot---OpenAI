@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .main-container {
+            display: flex;
+            width: 90%;
+            height: 80%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .tasks {
+            flex: 1;
+            background-color: #f9f9f9;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .chat-container {
+            flex: 2;
+            padding: 20px;
+            text-align: center; /* Center the chat interface */
+            display: flex;
+            flex-direction: column;
+        }
+        .user-profile {
+            flex: 1;
+            background-color: #f9f9f9;
+            border-left: 1px solid #ddd;
+            padding: 20px;
+            /*height: 500px; !* Adjust this value as needed for your layout *!*/
+            overflow-y: auto; /* This will add a scrollbar if the content is too tall */
+            /*padding: 10px; !* Optional: for better spacing inside the div *!*/
+            border: 1px solid #ddd; /* Optional: to show the div boundary if needed */
+            /*margin-bottom: 20px; !* Adjust as needed *!*/
+            text-align: left; /* To align text to the left */
+        }
+        .chat-title {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        .messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        /*.message {*/
+        /*    margin-bottom: 10px;*/
+        /*    padding: 5px;*/
+        /*}*/
+        /*.user-message {*/
+        /*    text-align: right;*/
+        /*}*/
+        .assistant-message {
+            text-align: left;
+        }
+        .profile-pic {
+            width: 40px; /* Adjust the size as needed */
+            height: 40px; /* Adjust the size as needed */
+            border-radius: 50%; /* Makes the image circular */
+            margin-right: 10px; /* Adds some space between the image and text */
+            vertical-align: middle; /* Aligns the image with the text */
+        }
+
+        .message {
+            display: flex;
+            align-items: center; /* Aligns the profile picture and text vertically */
+            margin-bottom: 10px;
+        }
+
+        /*.message-text {*/
+        /*    flex-grow: 1;*/
+        /*}*/
+        .user-message {
+            text-align: right;
+            justify-content: flex-end; /* Add this line to align the items to the right */
+        }
+
+        .dave-profile-pic {
+            width: 80px; /* Adjust the size as needed */
+            height: 80px; /* Adjust the size as needed to maintain aspect ratio */
+            border-radius: 50%; /* Makes the image circular */
+            display: block; /* Ensures the image is block-level for margin auto to work */
+            margin: 0 auto 20px; /* Centers the image and adds space below */
+            border: 3px solid #ddd; /* Optional: Adds a border around the image */
+        }
+
+        .user-message .profile-pic {
+            margin-left: 10px; /* Change from margin-right to margin-left */
+            margin-right: 0; /* Ensure there is no margin on the right */
+            order: 2; /* Add this line to reorder the image to come after the text */
+        }
+
+        .message-text.user {
+            order: 1; /* Add this line to reorder the text to come before the image */
+        }
+        /* More styles can be added as needed */
+        /* Additions to your existing style */
+        input[name="user_input"] {
+            flex: 1; /* This will allow the input field to fill the available space */
+            margin-right: 10px; /* Adds some space between the input field and the send button */
+            padding: 10px; /* Adds some padding inside the input field for better text visibility */
+            font-size: 16px; /* Increases the font size for better readability */
+            border: 1px solid #ddd; /* Adds a border to the input field */
+            border-radius: 4px; /* Rounds the corners of the input field */
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px; /* Adds padding to increase the size and improve the look of the button */
+            font-size: 16px; /* Matches the font size of the input field */
+            background-color: #5cb85c; /* Adds a background color to the button */
+            color: white; /* Changes the button text color to white */
+            border: none; /* Removes the default border */
+            border-radius: 4px; /* Rounds the corners of the button */
+            cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
+        }
+
+        button[type="submit"]:disabled {
+            background-color: #ccc; /* Changes the background color when the button is disabled */
+        }
+
+        /* Apply the styles to the form to align the items */
+        #chat-form {
+            display: flex; /* Use flexbox to align the input and button */
+            margin-top: auto; /* Pushes the form to the bottom of the chat container */
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="tasks">
+
+        </div>
+        <div class="chat-container">
+            <img src="/static/images/liam.webp" alt="Dave" class="dave-profile-pic"> <!-- Adjust the src attribute as needed -->
+            <div class="chat-title">Dave</div>            <div class="messages">
+                <!-- Chat messages will be displayed here -->
+            </div>
+            <form id="chat-form">
+                <input type="text" name="user_input" placeholder="Type your message here..." required>
+                <button type="submit">Send</button>
+            </form>
+            <br>
+            <button id="nextButton" disabled>Next</button>
+        </div>
+        <div class="user-profile">
+            
+        </div>
+    </div>
+</body>
+</html>
