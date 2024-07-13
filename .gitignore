@@ -1,2 +1,4 @@
 .venv/
 .env
+embeddings.npy
+texts.txt
