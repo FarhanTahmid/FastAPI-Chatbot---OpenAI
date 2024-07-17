@@ -37,4 +37,5 @@ async def websocket_endpoint(websocket: WebSocket):
         #     messages=[{"role": "user", "content": message}]
         # )
         # assistant_message = response.choices[0].message.content
+        print(assistant_message)
         await websocket.send_text(assistant_message)

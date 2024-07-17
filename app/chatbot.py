@@ -16,6 +16,7 @@ class ChatBot:
 
     def add_message(self,client,thread_id,user_message,context_list):
         context = "\n".join(context_list)
+        print(context)
         message=client.beta.threads.messages.create(
             thread_id=thread_id,role="user",content=f"{user_message}. Given Contexts are:{context}"
         )
