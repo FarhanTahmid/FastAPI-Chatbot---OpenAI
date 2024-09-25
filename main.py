@@ -6,13 +6,13 @@ import os
 from dotenv import load_dotenv
 from app.context_generation import Contexts
 from app.chatbot import ChatBot
-
+import uvicorn
 load_dotenv('.env', override=True)
 app = FastAPI()
 openai=OpenAI()
 chatbot=ChatBot()
 
-app.mount("/static", StaticFiles(directory="app/templates"), name="static")
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 @app.get("/")
 async def get():
@@ -42,10 +42,7 @@ async def websocket_endpoint(websocket: WebSocket):
             posts_text.append(content['texts'])
             # print(f"Comments: {content['comments']}")
             post_comments.append(content['comments'])
-            print(posts_title)
-            print(posts_text)
-            print(post_comments)
-
+            
         chatbot.add_message(chatbot.client,chatbot.thread_id,message,posts_title,posts_text,post_comments)
         assistant_message=chatbot.createRunAndGenerate(chatbot.client,chatbot.thread_id)
         
@@ -56,3 +53,6 @@ async def websocket_endpoint(websocket: WebSocket):
         # assistant_message = response.choices[0].message.content
         print(assistant_message)
         await websocket.send_text(assistant_message)
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
